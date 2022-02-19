@@ -21,14 +21,14 @@ import springfox.documentation.spring.web.plugins.Docket;
 @Configuration
 public class OpenApiConfig {
 
-	@Bean
-	public OpenAPI customConfiguration() {
-		return new OpenAPI().components(new Components()).info(new Info().title("Royale - CRM API").description(
-				"Royale - CRM API é uma api responsável pela comunicação entre os portais com o Banco de dados\"")
-				.version("1.0.0-Beta")
-				.license(new License().name("Royale All Rights Reserved").url("http://royale.com.br/"))
-				.termsOfService("http://royale.com.br/"));
-	}
+//	@Bean
+//	public OpenAPI customConfiguration() {
+//		return new OpenAPI().components(new Components()).info(new Info().title("Royale - CRM API").description(
+//				"Royale - CRM API é uma api responsável pela comunicação entre os portais com o Banco de dados\"")
+//				.version("1.0.0-Beta")
+//				.license(new License().name("Royale All Rights Reserved").url("http://royale.com.br/"))
+//				.termsOfService("http://royale.com.br/"));
+//	}
 	
 	 @Bean
 	    public Docket forumApi() {
