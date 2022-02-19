@@ -1,0 +1,205 @@
+18-02-2022 21:23:44.744  INFO 12016 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : Starting CrmApiApplication using Java 17.0.1 on DESKTOP-I0URQT5 with PID 12016 (C:\WILL_DEV\WORKSPACES\workspace-will-sts\crm\target\classes started by Willian in C:\WILL_DEV\WORKSPACES\workspace-will-sts\crm)
+18-02-2022 21:23:44.745  INFO 12016 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : No active profile set, falling back to default profiles: default
+18-02-2022 21:23:44.779  INFO 12016 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+18-02-2022 21:23:44.779  INFO 12016 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+18-02-2022 21:23:45.586  INFO 12016 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+18-02-2022 21:23:45.593  INFO 12016 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+18-02-2022 21:23:45.593  INFO 12016 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+18-02-2022 21:23:45.652  INFO 12016 --- [restartedMain] o.a.c.c.C.[.[localhost].[/royale-api]    : Initializing Spring embedded WebApplicationContext
+18-02-2022 21:23:45.652  INFO 12016 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 873 ms
+18-02-2022 21:23:45.985  INFO 12016 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+18-02-2022 21:23:46.137  INFO 12016 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path '/royale-api'
+18-02-2022 21:23:46.140  WARN 12016 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'documentationPluginsBootstrapper'; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.web.servlet.mvc.condition.PatternsRequestCondition.getPatterns()" because "this.condition" is null
+18-02-2022 21:23:46.170  INFO 12016 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+18-02-2022 21:23:46.195  INFO 12016 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+18-02-2022 21:23:46.215 ERROR 12016 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.context.ApplicationContextException: Failed to start bean 'documentationPluginsBootstrapper'; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.web.servlet.mvc.condition.PatternsRequestCondition.getPatterns()" because "this.condition" is null
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:181) ~[spring-context-5.3.15.jar:5.3.15]
+	at org.springframework.context.support.DefaultLifecycleProcessor.access$200(DefaultLifecycleProcessor.java:54) ~[spring-context-5.3.15.jar:5.3.15]
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:356) ~[spring-context-5.3.15.jar:5.3.15]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:155) ~[spring-context-5.3.15.jar:5.3.15]
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:123) ~[spring-context-5.3.15.jar:5.3.15]
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:935) ~[spring-context-5.3.15.jar:5.3.15]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:586) ~[spring-context-5.3.15.jar:5.3.15]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145) ~[spring-boot-2.6.3.jar:2.6.3]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:732) ~[spring-boot-2.6.3.jar:2.6.3]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:414) ~[spring-boot-2.6.3.jar:2.6.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302) ~[spring-boot-2.6.3.jar:2.6.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303) ~[spring-boot-2.6.3.jar:2.6.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292) ~[spring-boot-2.6.3.jar:2.6.3]
+	at br.com.royale.crm.api.config.CrmApiApplication.main(CrmApiApplication.java:24) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.6.3.jar:2.6.3]
+Caused by: java.lang.NullPointerException: Cannot invoke "org.springframework.web.servlet.mvc.condition.PatternsRequestCondition.getPatterns()" because "this.condition" is null
+	at springfox.documentation.spring.web.WebMvcPatternsRequestConditionWrapper.getPatterns(WebMvcPatternsRequestConditionWrapper.java:56) ~[springfox-spring-webmvc-3.0.0.jar:3.0.0]
+	at springfox.documentation.RequestHandler.sortedPaths(RequestHandler.java:113) ~[springfox-core-3.0.0.jar:3.0.0]
+	at springfox.documentation.spi.service.contexts.Orderings.lambda$byPatternsCondition$3(Orderings.java:89) ~[springfox-spi-3.0.0.jar:3.0.0]
+	at java.base/java.util.Comparator.lambda$comparing$77a9974f$1(Comparator.java:473) ~[na:na]
+	at java.base/java.util.TimSort.countRunAndMakeAscending(TimSort.java:355) ~[na:na]
+	at java.base/java.util.TimSort.sort(TimSort.java:220) ~[na:na]
+	at java.base/java.util.Arrays.sort(Arrays.java:1307) ~[na:na]
+	at java.base/java.util.ArrayList.sort(ArrayList.java:1721) ~[na:na]
+	at java.base/java.util.stream.SortedOps$RefSortingSink.end(SortedOps.java:392) ~[na:na]
+	at java.base/java.util.stream.Sink$ChainedReference.end(Sink.java:258) ~[na:na]
+	at java.base/java.util.stream.Sink$ChainedReference.end(Sink.java:258) ~[na:na]
+	at java.base/java.util.stream.Sink$ChainedReference.end(Sink.java:258) ~[na:na]
+	at java.base/java.util.stream.Sink$ChainedReference.end(Sink.java:258) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:510) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682) ~[na:na]
+	at springfox.documentation.spring.web.plugins.WebMvcRequestHandlerProvider.requestHandlers(WebMvcRequestHandlerProvider.java:81) ~[springfox-spring-webmvc-3.0.0.jar:3.0.0]
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[na:na]
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921) ~[na:na]
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682) ~[na:na]
+	at springfox.documentation.spring.web.plugins.AbstractDocumentationPluginsBootstrapper.withDefaults(AbstractDocumentationPluginsBootstrapper.java:107) ~[springfox-spring-web-3.0.0.jar:3.0.0]
+	at springfox.documentation.spring.web.plugins.AbstractDocumentationPluginsBootstrapper.buildContext(AbstractDocumentationPluginsBootstrapper.java:91) ~[springfox-spring-web-3.0.0.jar:3.0.0]
+	at springfox.documentation.spring.web.plugins.AbstractDocumentationPluginsBootstrapper.bootstrapDocumentationPlugins(AbstractDocumentationPluginsBootstrapper.java:82) ~[springfox-spring-web-3.0.0.jar:3.0.0]
+	at springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper.start(DocumentationPluginsBootstrapper.java:100) ~[springfox-spring-web-3.0.0.jar:3.0.0]
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:178) ~[spring-context-5.3.15.jar:5.3.15]
+	... 19 common frames omitted
+
+18-02-2022 21:24:47.354  INFO 10288 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : Starting CrmApiApplication using Java 17.0.1 on DESKTOP-I0URQT5 with PID 10288 (C:\WILL_DEV\WORKSPACES\workspace-will-sts\crm\target\classes started by Willian in C:\WILL_DEV\WORKSPACES\workspace-will-sts\crm)
+18-02-2022 21:24:47.355  INFO 10288 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : No active profile set, falling back to default profiles: default
+18-02-2022 21:24:47.392  INFO 10288 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+18-02-2022 21:24:47.392  INFO 10288 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+18-02-2022 21:24:48.196  INFO 10288 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+18-02-2022 21:24:48.203  INFO 10288 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+18-02-2022 21:24:48.203  INFO 10288 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+18-02-2022 21:24:48.260  INFO 10288 --- [restartedMain] o.a.c.c.C.[.[localhost].[/royale-api]    : Initializing Spring embedded WebApplicationContext
+18-02-2022 21:24:48.260  INFO 10288 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 867 ms
+18-02-2022 21:24:48.550  INFO 10288 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+18-02-2022 21:24:48.708  INFO 10288 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path '/royale-api'
+18-02-2022 21:24:48.840  INFO 10288 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : Started CrmApiApplication in 1.776 seconds (JVM running for 2.344)
+18-02-2022 21:25:42.750  INFO 10288 --- [http-nio-80-exec-5] o.a.c.c.C.[.[localhost].[/royale-api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+18-02-2022 21:25:42.750  INFO 10288 --- [http-nio-80-exec-5] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+18-02-2022 21:25:42.751  INFO 10288 --- [http-nio-80-exec-5] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+18-02-2022 21:26:32.006  INFO 10288 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : Starting CrmApiApplication using Java 17.0.1 on DESKTOP-I0URQT5 with PID 10288 (C:\WILL_DEV\WORKSPACES\workspace-will-sts\crm\target\classes started by Willian in C:\WILL_DEV\WORKSPACES\workspace-will-sts\crm)
+18-02-2022 21:26:32.006  INFO 10288 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : No active profile set, falling back to default profiles: default
+18-02-2022 21:26:32.207  INFO 10288 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+18-02-2022 21:26:32.207  INFO 10288 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+18-02-2022 21:26:32.207  INFO 10288 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+18-02-2022 21:26:32.219  INFO 10288 --- [restartedMain] o.a.c.c.C.[.[localhost].[/royale-api]    : Initializing Spring embedded WebApplicationContext
+18-02-2022 21:26:32.219  INFO 10288 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 211 ms
+18-02-2022 21:26:32.268  INFO 10288 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+18-02-2022 21:26:32.299  INFO 10288 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path '/royale-api'
+18-02-2022 21:26:32.332  INFO 10288 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : Started CrmApiApplication in 0.348 seconds (JVM running for 105.836)
+18-02-2022 21:26:32.333  INFO 10288 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+18-02-2022 21:26:32.698  INFO 10288 --- [RMI TCP Connection(12)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+18-02-2022 21:27:10.508  INFO 16420 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : Starting CrmApiApplication using Java 17.0.1 on DESKTOP-I0URQT5 with PID 16420 (C:\WILL_DEV\WORKSPACES\workspace-will-sts\crm\target\classes started by Willian in C:\WILL_DEV\WORKSPACES\workspace-will-sts\crm)
+18-02-2022 21:27:10.509  INFO 16420 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : No active profile set, falling back to default profiles: default
+18-02-2022 21:27:10.547  INFO 16420 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+18-02-2022 21:27:10.547  INFO 16420 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+18-02-2022 21:27:11.358  INFO 16420 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+18-02-2022 21:27:11.365  INFO 16420 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+18-02-2022 21:27:11.365  INFO 16420 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+18-02-2022 21:27:11.422  INFO 16420 --- [restartedMain] o.a.c.c.C.[.[localhost].[/royale-api]    : Initializing Spring embedded WebApplicationContext
+18-02-2022 21:27:11.423  INFO 16420 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 876 ms
+18-02-2022 21:27:11.717  INFO 16420 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+18-02-2022 21:27:11.875  INFO 16420 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path '/royale-api'
+18-02-2022 21:27:11.924  INFO 16420 --- [http-nio-80-exec-1] o.a.c.c.C.[.[localhost].[/royale-api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+18-02-2022 21:27:11.924  INFO 16420 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+18-02-2022 21:27:11.925  INFO 16420 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+18-02-2022 21:27:12.030  INFO 16420 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : Started CrmApiApplication in 1.817 seconds (JVM running for 2.381)
+18-02-2022 21:27:32.165  WARN 16420 --- [http-nio-80-exec-4] o.s.web.servlet.PageNotFound             : No mapping for GET /royale-api/accounts
+18-02-2022 21:27:35.746  WARN 16420 --- [http-nio-80-exec-8] o.s.web.servlet.PageNotFound             : No mapping for GET /royale-api/account
+18-02-2022 21:27:55.195  INFO 16420 --- [RMI TCP Connection(9)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+18-02-2022 21:28:11.069  INFO 5960 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : Starting CrmApiApplication using Java 17.0.1 on DESKTOP-I0URQT5 with PID 5960 (C:\WILL_DEV\WORKSPACES\workspace-will-sts\crm\target\classes started by Willian in C:\WILL_DEV\WORKSPACES\workspace-will-sts\crm)
+18-02-2022 21:28:11.070  INFO 5960 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : No active profile set, falling back to default profiles: default
+18-02-2022 21:28:11.108  INFO 5960 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+18-02-2022 21:28:11.108  INFO 5960 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+18-02-2022 21:28:11.906  INFO 5960 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+18-02-2022 21:28:11.913  INFO 5960 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+18-02-2022 21:28:11.913  INFO 5960 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+18-02-2022 21:28:11.969  INFO 5960 --- [restartedMain] o.a.c.c.C.[.[localhost].[/royale-api]    : Initializing Spring embedded WebApplicationContext
+18-02-2022 21:28:11.969  INFO 5960 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 861 ms
+18-02-2022 21:28:12.257  INFO 5960 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+18-02-2022 21:28:12.411  INFO 5960 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path '/royale-api'
+18-02-2022 21:28:12.543  INFO 5960 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : Started CrmApiApplication in 1.759 seconds (JVM running for 2.33)
+18-02-2022 21:28:21.312  INFO 5960 --- [http-nio-80-exec-1] o.a.c.c.C.[.[localhost].[/royale-api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+18-02-2022 21:28:21.313  INFO 5960 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+18-02-2022 21:28:21.313  INFO 5960 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+18-02-2022 21:28:21.323  WARN 5960 --- [http-nio-80-exec-1] o.s.web.servlet.PageNotFound             : No mapping for GET /royale-api/account/list
+18-02-2022 21:29:23.386  WARN 5960 --- [http-nio-80-exec-4] o.s.web.servlet.PageNotFound             : No mapping for GET /royale-api/swagger/index.html
+18-02-2022 21:33:09.091  INFO 5960 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : Starting CrmApiApplication using Java 17.0.1 on DESKTOP-I0URQT5 with PID 5960 (C:\WILL_DEV\WORKSPACES\workspace-will-sts\crm\target\classes started by Willian in C:\WILL_DEV\WORKSPACES\workspace-will-sts\crm)
+18-02-2022 21:33:09.091  INFO 5960 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : No active profile set, falling back to default profiles: default
+18-02-2022 21:33:09.314  INFO 5960 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+18-02-2022 21:33:09.314  INFO 5960 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+18-02-2022 21:33:09.314  INFO 5960 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+18-02-2022 21:33:09.326  INFO 5960 --- [restartedMain] o.a.c.c.C.[.[localhost].[/royale-api]    : Initializing Spring embedded WebApplicationContext
+18-02-2022 21:33:09.327  INFO 5960 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 234 ms
+18-02-2022 21:33:09.388  INFO 5960 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+18-02-2022 21:33:09.427  INFO 5960 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path '/royale-api'
+18-02-2022 21:33:09.436  INFO 5960 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : Started CrmApiApplication in 0.371 seconds (JVM running for 299.223)
+18-02-2022 21:33:09.438  INFO 5960 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+18-02-2022 21:33:16.016  INFO 5960 --- [http-nio-80-exec-1] o.a.c.c.C.[.[localhost].[/royale-api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+18-02-2022 21:33:16.016  INFO 5960 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+18-02-2022 21:33:16.017  INFO 5960 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+18-02-2022 21:33:58.188  INFO 5960 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : Starting CrmApiApplication using Java 17.0.1 on DESKTOP-I0URQT5 with PID 5960 (C:\WILL_DEV\WORKSPACES\workspace-will-sts\crm\target\classes started by Willian in C:\WILL_DEV\WORKSPACES\workspace-will-sts\crm)
+18-02-2022 21:33:58.189  INFO 5960 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : No active profile set, falling back to default profiles: default
+18-02-2022 21:33:58.383  INFO 5960 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+18-02-2022 21:33:58.383  INFO 5960 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+18-02-2022 21:33:58.383  INFO 5960 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+18-02-2022 21:33:58.395  INFO 5960 --- [restartedMain] o.a.c.c.C.[.[localhost].[/royale-api]    : Initializing Spring embedded WebApplicationContext
+18-02-2022 21:33:58.395  INFO 5960 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 205 ms
+18-02-2022 21:33:58.442  INFO 5960 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+18-02-2022 21:33:58.469  INFO 5960 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path '/royale-api'
+18-02-2022 21:33:58.480  INFO 5960 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : Started CrmApiApplication in 0.312 seconds (JVM running for 348.266)
+18-02-2022 21:33:58.481  INFO 5960 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+18-02-2022 21:34:02.145  INFO 5960 --- [http-nio-80-exec-1] o.a.c.c.C.[.[localhost].[/royale-api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+18-02-2022 21:34:02.145  INFO 5960 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+18-02-2022 21:34:02.146  INFO 5960 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+18-02-2022 21:35:50.546  INFO 5960 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : Starting CrmApiApplication using Java 17.0.1 on DESKTOP-I0URQT5 with PID 5960 (C:\WILL_DEV\WORKSPACES\workspace-will-sts\crm\target\classes started by Willian in C:\WILL_DEV\WORKSPACES\workspace-will-sts\crm)
+18-02-2022 21:35:50.546  INFO 5960 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : No active profile set, falling back to default profiles: default
+18-02-2022 21:35:50.753  INFO 5960 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+18-02-2022 21:35:50.754  INFO 5960 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+18-02-2022 21:35:50.754  INFO 5960 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+18-02-2022 21:35:50.766  INFO 5960 --- [restartedMain] o.a.c.c.C.[.[localhost].[/royale-api]    : Initializing Spring embedded WebApplicationContext
+18-02-2022 21:35:50.766  INFO 5960 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 218 ms
+18-02-2022 21:35:50.811  INFO 5960 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+18-02-2022 21:35:50.839  INFO 5960 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path '/royale-api'
+18-02-2022 21:35:50.847  INFO 5960 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : Started CrmApiApplication in 0.323 seconds (JVM running for 460.634)
+18-02-2022 21:35:50.850  INFO 5960 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+18-02-2022 21:35:55.250  INFO 5960 --- [http-nio-80-exec-1] o.a.c.c.C.[.[localhost].[/royale-api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+18-02-2022 21:35:55.250  INFO 5960 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+18-02-2022 21:35:55.251  INFO 5960 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+18-02-2022 21:39:49.648  INFO 5960 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : Starting CrmApiApplication using Java 17.0.1 on DESKTOP-I0URQT5 with PID 5960 (C:\WILL_DEV\WORKSPACES\workspace-will-sts\crm\target\classes started by Willian in C:\WILL_DEV\WORKSPACES\workspace-will-sts\crm)
+18-02-2022 21:39:49.648  INFO 5960 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : No active profile set, falling back to default profiles: default
+18-02-2022 21:39:49.871  INFO 5960 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+18-02-2022 21:39:49.871  INFO 5960 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+18-02-2022 21:39:49.871  INFO 5960 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+18-02-2022 21:39:49.883  INFO 5960 --- [restartedMain] o.a.c.c.C.[.[localhost].[/royale-api]    : Initializing Spring embedded WebApplicationContext
+18-02-2022 21:39:49.883  INFO 5960 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 233 ms
+18-02-2022 21:39:49.939  INFO 5960 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+18-02-2022 21:39:49.976  INFO 5960 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path '/royale-api'
+18-02-2022 21:39:49.983  INFO 5960 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : Started CrmApiApplication in 0.361 seconds (JVM running for 699.77)
+18-02-2022 21:39:49.984  INFO 5960 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+18-02-2022 21:40:09.045  INFO 5960 --- [http-nio-80-exec-1] o.a.c.c.C.[.[localhost].[/royale-api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+18-02-2022 21:40:09.045  INFO 5960 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+18-02-2022 21:40:09.046  INFO 5960 --- [http-nio-80-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+18-02-2022 21:40:09.046  WARN 5960 --- [http-nio-80-exec-1] o.s.web.servlet.PageNotFound             : No mapping for GET /royale-api/account/list
+18-02-2022 21:40:58.046  WARN 5960 --- [http-nio-80-exec-4] o.s.web.servlet.PageNotFound             : No mapping for GET /royale-api/account/list
+18-02-2022 21:43:22.742  INFO 5960 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : Starting CrmApiApplication using Java 17.0.1 on DESKTOP-I0URQT5 with PID 5960 (C:\WILL_DEV\WORKSPACES\workspace-will-sts\crm\target\classes started by Willian in C:\WILL_DEV\WORKSPACES\workspace-will-sts\crm)
+18-02-2022 21:43:22.742  INFO 5960 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : No active profile set, falling back to default profiles: default
+18-02-2022 21:43:22.942  INFO 5960 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 80 (http)
+18-02-2022 21:43:22.942  INFO 5960 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+18-02-2022 21:43:22.942  INFO 5960 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+18-02-2022 21:43:22.957  INFO 5960 --- [restartedMain] o.a.c.c.C.[.[localhost].[/royale-api]    : Initializing Spring embedded WebApplicationContext
+18-02-2022 21:43:22.957  INFO 5960 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 213 ms
+18-02-2022 21:43:23.002  INFO 5960 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+18-02-2022 21:43:23.028  INFO 5960 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 80 (http) with context path '/royale-api'
+18-02-2022 21:43:23.036  INFO 5960 --- [restartedMain] b.c.r.crm.api.config.CrmApiApplication   : Started CrmApiApplication in 0.315 seconds (JVM running for 912.823)
+18-02-2022 21:43:23.037  INFO 5960 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+18-02-2022 21:44:22.796  INFO 5960 --- [RMI TCP Connection(40)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
