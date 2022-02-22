@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,12 +37,12 @@ public class AccountController {
 	}
 	
 	@Operation(summary = "Create Accounts", description = "Método responsável por Criar Accounts", tags = "account-controller")
-	@RequestMapping(path = "/create", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
+	@RequestMapping(path = "/create", method = RequestMethod.POST, produces = "application/json")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Retorno da Criação de Account"),
 			@ApiResponse(code = 403, message = "Não Permitido executar esta ação"),
 			@ApiResponse(code = 500, message = "Erro interno do servidor, necessario atuação tecnica") })
-	private ResponseEntity<?> postCreateAccount(@RequestBody @Valid AccountEntity account) {
+	private ResponseEntity postCreateAccount(@RequestBody @Valid AccountEntity account) {
 			
 		return service.createAccount(account);
 	}
@@ -54,12 +53,12 @@ public class AccountController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Retorno da Atualização de Account"),
 			@ApiResponse(code = 403, message = "Não Permitido executar esta ação"),
 			@ApiResponse(code = 500, message = "Erro interno do servidor, necessario atuação tecnica") })
-	private ResponseEntity<?> putUpdateAccount(@RequestBody @Valid AccountEntity account) {
+	private ResponseEntity putUpdateAccount(@RequestBody @Valid AccountEntity account) {
 			
 		return service.updateAccount(account);
 	}
 	
-	@Operation(summary = "Delete Accounts", description = "Método responsável por Deletar Accounts", tags = "account-controller")
+	@Operation(summary = "Delete Accounts", description = "Método responsável por Exclusão Fisica Accounts", tags = "account-controller")
 	@RequestMapping(path = "/delete/{uuid}", method = RequestMethod.DELETE, produces = "application/json")
 	@ResponseBody
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Retorno da deleção de Account"),
@@ -68,6 +67,28 @@ public class AccountController {
 	private ResponseEntity<?> deleteAccount(@PathVariable String uuid) {
 			
 		return service.deleteAccount(uuid);
+	}
+	
+	@Operation(summary = "Exclude Accounts", description = "Método responsável por Exclusão Lógica de  Accounts", tags = "account-controller")
+	@RequestMapping(path = "/exclude/{uuid}", method = RequestMethod.PUT, produces = "application/json")
+	@ResponseBody
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Retorno da deleção de Account"),
+			@ApiResponse(code = 403, message = "Não Permitido executar esta ação"),
+			@ApiResponse(code = 500, message = "Erro interno do servidor, necessario atuação tecnica") })
+	private ResponseEntity<?> excludeAccount(@PathVariable String uuid) {
+			
+		return service.excludeAccount(uuid);
+	}
+	
+	@Operation(summary = "Activate Accounts", description = "Método responsável por Ativação Lógica de  Accounts", tags = "account-controller")
+	@RequestMapping(path = "/activate/{uuid}", method = RequestMethod.PUT, produces = "application/json")
+	@ResponseBody
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Retorno da deleção de Account"),
+			@ApiResponse(code = 403, message = "Não Permitido executar esta ação"),
+			@ApiResponse(code = 500, message = "Erro interno do servidor, necessario atuação tecnica") })
+	private ResponseEntity<?> activateAccount(@PathVariable String uuid) {
+			
+		return service.activateAccount(uuid);
 	}
 	
 	

@@ -10,9 +10,10 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+
 @Entity
 @Table(name = "accounts", schema = "portal")
-public class AccountEntity {
+public class AccountEntity{
 
 	@Id
 	@Column(name = "uuid", nullable = false, unique = true)
@@ -125,5 +126,7 @@ public class AccountEntity {
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
+
+	
 
 }

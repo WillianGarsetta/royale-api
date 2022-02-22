@@ -2,6 +2,7 @@ package br.com.royale.crm.api.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import javax.validation.Valid;
@@ -66,8 +67,8 @@ public class AccountServiceImpl implements AccountService {
 			if (account.getUuid().isBlank()) {
 				account.setUuid(uuid);
 			}
-				repository.save(account);
-				response = new ResponseEntity<String>(new Gson().toJson("Success"), HttpStatus.CREATED);
+			repository.save(account);
+			response = new ResponseEntity<String>(new Gson().toJson("Success"), HttpStatus.CREATED);
 
 		} catch (Exception e) {
 			response = new ResponseEntity(new Gson().toJson("[Error] - [royale-account-create] - " + e.getMessage()),
@@ -79,40 +80,80 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public ResponseEntity<String> updateAccount(@Valid AccountEntity account) {
 		ResponseEntity<String> response = null;
-		if(Boolean.TRUE.equals(validateAccount(account.getUuid()))) {
+		if (Boolean.TRUE.equals(validateAccount(account.getUuid()))) {
 			repository.save(account);
 			response = new ResponseEntity<String>(new Gson().toJson("Success"), HttpStatus.OK);
-		}else {
-			response = new ResponseEntity(new Gson().toJson("[Error] - [royale-account-update] - Invalid Account - ID Not Found"),
+		} else {
+			response = new ResponseEntity(
+					new Gson().toJson("[Error] - [royale-account-update] - Invalid Account - ID Not Found"),
 					HttpStatus.NOT_FOUND);
 
 		}
-		
+
 		return response;
 	}
-	
-	
 
 	@Override
 	public ResponseEntity<String> deleteAccount(String uuid) {
 		ResponseEntity<String> response = null;
-		if(Boolean.TRUE.equals(validateAccount(uuid))) {
+		if (Boolean.TRUE.equals(validateAccount(uuid))) {
 			repository.deleteById(uuid);
 			response = new ResponseEntity<String>(new Gson().toJson("Success"), HttpStatus.OK);
-		}else {
-			response = new ResponseEntity<String>(new Gson().toJson("[Error] - [royale-account-delete] - Invalid Account - ID Not Found"),
+		} else {
+			response = new ResponseEntity<String>(
+					new Gson().toJson("[Error] - [royale-account-delete] - Invalid Account - ID Not Found"),
 					HttpStatus.NOT_FOUND);
 		}
 		return response;
-		
+
 	}
 
+	@Override
+	public ResponseEntity<?> excludeAccount(String uuid) {
+		ResponseEntity<String> response = null;
+		try {
+			if (Boolean.TRUE.equals(validateAccount(uuid))) {
+				AccountEntity account;
+				account = repository.getById(uuid);
+				account.setBlocked(Boolean.TRUE);
+				repository.save(account);
+				response = new ResponseEntity<String>(new Gson().toJson("Success"), HttpStatus.OK);
+			}
+		} catch (Exception e) {
+			response = new ResponseEntity<String>(new Gson().toJson("[Error] - [royale-account-exclude] - Invalid Account - ID Not Found"),
+					HttpStatus.NOT_FOUND);
+
+		}
+		return response;
+	}
+	
+	@Override
+	public ResponseEntity<?> activateAccount(String uuid) {
+		ResponseEntity<String> response = null;
+		try {
+			if (Boolean.TRUE.equals(validateAccount(uuid))) {
+				AccountEntity account;
+				account = repository.getById(uuid);
+				account.setBlocked(Boolean.FALSE);
+				repository.save(account);
+				response = new ResponseEntity<String>(new Gson().toJson("Success"), HttpStatus.OK);
+			}
+		} catch (Exception e) {
+			response = new ResponseEntity<String>(new Gson().toJson("[Error] - [royale-account-activate] - Invalid Account - ID Not Found"),
+					HttpStatus.NOT_FOUND);
+
+		}
+		return response;
+	}
+
+	
+
 	private Boolean validateAccount(String uuid) {
-		if(repository.findById(uuid).isPresent()) {
+		if (repository.findById(uuid).isPresent()) {
 			return Boolean.TRUE;
-		}else {
+		} else {
 			return Boolean.FALSE;
 		}
 	}
-	
+
 }

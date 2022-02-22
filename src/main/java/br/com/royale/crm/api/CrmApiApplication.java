@@ -13,10 +13,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 @EnableWebMvc
 @SpringBootApplication
 @EntityScan(basePackages = {"br.com.royale.crm.api.entity"})
 @EnableJpaRepositories(basePackages = {"br.com.royale.crm.api.repository"})
+@EnableSwagger2
 public class CrmApiApplication extends SpringBootServletInitializer {
 
 	 

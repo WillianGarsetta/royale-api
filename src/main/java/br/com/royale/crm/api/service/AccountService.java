@@ -13,4 +13,6 @@ public interface AccountService {
 	ResponseEntity createAccount(AccountEntity account);
 	ResponseEntity<String> updateAccount(@Valid AccountEntity account);
 	ResponseEntity<String> deleteAccount(String uuid);
+	ResponseEntity<?> excludeAccount(String uuid);
+	ResponseEntity<?> activateAccount(String uuid);
 }
