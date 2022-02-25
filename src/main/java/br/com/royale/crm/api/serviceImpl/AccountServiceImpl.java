@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import br.com.royale.crm.api.dto.FormLogin;
 import br.com.royale.crm.api.entity.AccountEntity;
 import br.com.royale.crm.api.repository.AccountRepository;
 import br.com.royale.crm.api.service.AccountService;
@@ -120,13 +121,14 @@ public class AccountServiceImpl implements AccountService {
 				response = new ResponseEntity<String>(new Gson().toJson("Success"), HttpStatus.OK);
 			}
 		} catch (Exception e) {
-			response = new ResponseEntity<String>(new Gson().toJson("[Error] - [royale-account-exclude] - Invalid Account - ID Not Found"),
+			response = new ResponseEntity<String>(
+					new Gson().toJson("[Error] - [royale-account-exclude] - Invalid Account - ID Not Found"),
 					HttpStatus.NOT_FOUND);
 
 		}
 		return response;
 	}
-	
+
 	@Override
 	public ResponseEntity<?> activateAccount(String uuid) {
 		ResponseEntity<String> response = null;
@@ -139,14 +141,35 @@ public class AccountServiceImpl implements AccountService {
 				response = new ResponseEntity<String>(new Gson().toJson("Success"), HttpStatus.OK);
 			}
 		} catch (Exception e) {
-			response = new ResponseEntity<String>(new Gson().toJson("[Error] - [royale-account-activate] - Invalid Account - ID Not Found"),
+			response = new ResponseEntity<String>(
+					new Gson().toJson("[Error] - [royale-account-activate] - Invalid Account - ID Not Found"),
 					HttpStatus.NOT_FOUND);
 
 		}
 		return response;
 	}
 
-	
+	@Override
+	public ResponseEntity authenticationAccount(FormLogin login) {
+		ResponseEntity<String> response = null;
+		String user = login.getUser();
+		String pass = login.getPassword();
+		AccountEntity account = repository.authentication(user,pass);
+		try {
+
+			if (Boolean.TRUE.equals(account.getBlocked())) {
+				response = new ResponseEntity<String>(new Gson().toJson("User Blocked, Contact ADMIN"),
+						HttpStatus.FORBIDDEN);
+			} else {
+				response = new ResponseEntity<String>(new Gson().toJson("Success"), HttpStatus.OK);
+			}
+		} catch (Exception e) {
+			response = new ResponseEntity<String>(
+					new Gson().toJson("[Error] - [royale-account-authentication] - ERROR" + e.getMessage()),
+					HttpStatus.NOT_FOUND);
+		}
+		return response;
+	}
 
 	private Boolean validateAccount(String uuid) {
 		if (repository.findById(uuid).isPresent()) {

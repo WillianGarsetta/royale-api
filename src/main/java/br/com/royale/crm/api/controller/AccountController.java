@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.royale.crm.api.dto.FormLogin;
 import br.com.royale.crm.api.entity.AccountEntity;
 import br.com.royale.crm.api.service.AccountService;
 import io.swagger.annotations.ApiResponse;
@@ -90,6 +92,18 @@ public class AccountController {
 			
 		return service.activateAccount(uuid);
 	}
+	
+	@Operation(summary = "Auth Accounts", description = "Método responsável por autenticação de Accounts", tags = "account-controller")
+	@RequestMapping(path = "/auth", method = RequestMethod.POST, produces = "application/json")
+	@ResponseBody
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Retorno da auth de Account"),
+			@ApiResponse(code = 403, message = "Não Permitido executar esta ação"),
+			@ApiResponse(code = 500, message = "Erro interno do servidor, necessario atuação tecnica") })
+	private ResponseEntity<?> authenticationAccount(@RequestBody FormLogin login) {
+			
+		return service.authenticationAccount(login);
+	}
+	
 	
 	
 }
