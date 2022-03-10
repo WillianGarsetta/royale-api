@@ -1,4 +1,4 @@
-# royale-api
+# Royale API
 
 # Tecnologias
  - SpringBoot Framework
