@@ -10,7 +10,7 @@ import br.com.royale.crm.api.entity.AccountEntity;
 @Repository
 public interface AccountRepository extends JpaRepository<AccountEntity, String> {
 
-	@Query("SELECT account FROM AccountEntity as account where (account.email = :login or account.firstname = :login) and account.password = :senha")
+	@Query("SELECT account FROM AccountEntity as account where account.email = :login and account.password = :senha")
 	AccountEntity authentication(@Param("login")String login, @Param("senha") String senha);
 	
 }
