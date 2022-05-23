@@ -1,5 +1,7 @@
 package br.com.royale.crm.api.dto;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+
 public class FormLogin {
 	private String user;
 	private String password;
@@ -24,6 +26,10 @@ public class FormLogin {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public UsernamePasswordAuthenticationToken converter() {
+		return new UsernamePasswordAuthenticationToken(user, password);
 	}
 	
 }

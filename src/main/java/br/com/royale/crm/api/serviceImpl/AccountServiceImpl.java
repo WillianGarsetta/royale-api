@@ -1,29 +1,47 @@
 package br.com.royale.crm.api.serviceImpl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.jayway.jsonpath.DocumentContext;
+import com.jayway.jsonpath.internal.JsonContext;
 
+import br.com.royale.crm.api.dto.AccountDTO;
 import br.com.royale.crm.api.dto.FormLogin;
 import br.com.royale.crm.api.entity.AccountEntity;
 import br.com.royale.crm.api.repository.AccountRepository;
 import br.com.royale.crm.api.service.AccountService;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 @Service
 public class AccountServiceImpl implements AccountService {
 
 	private AccountRepository repository;
+	
+	@Value("${api.jwt.expiration}") 
+	private String expiration;
+	
+	@Value("${api.jwt.secret}") 
+	private String secret;
 
 	@Autowired
 	public AccountServiceImpl(AccountRepository repository) {
@@ -31,13 +49,12 @@ public class AccountServiceImpl implements AccountService {
 		this.repository = repository;
 	}
 
-	private String uuid = UUID.randomUUID().toString();
-
 	public ResponseEntity<String> listAccounts() {
 		ResponseEntity<String> response = null;
 		List<AccountEntity> accounts = new ArrayList<AccountEntity>();
 		List<JsonObject> listReturn = new ArrayList<JsonObject>();
 		accounts = repository.findAll();
+		
 		try {
 			for (AccountEntity account : accounts) {
 				JsonObject innerObject = new JsonObject();
@@ -45,8 +62,9 @@ public class AccountServiceImpl implements AccountService {
 				innerObject.addProperty("firstname", account.getFirstname());
 				innerObject.addProperty("lastName", account.getLastname());
 				innerObject.addProperty("email", account.getEmail());
+				innerObject.addProperty("emailAcesso", account.getEmailAcesso());
 				innerObject.addProperty("blocked", account.getBlocked().toString());
-				innerObject.addProperty("administrator", account.getAdministrator());
+				innerObject.addProperty("perfil", account.getRole());
 				innerObject.addProperty("password", account.getPassword());
 
 				listReturn.add(innerObject);
@@ -62,13 +80,30 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public ResponseEntity<String> createAccount(AccountEntity account) {
+	public ResponseEntity<String> createAccount(AccountDTO account) {
+		ObjectMapper mapper = new ObjectMapper();
+		
+		String uuid = UUID.randomUUID().toString();
 		ResponseEntity<String> response = null;
 		try {
 			if (account.getUuid().isBlank()) {
 				account.setUuid(uuid);
 			}
-			repository.save(account);
+			
+			
+	
+			String accountJson = mapper.writeValueAsString(account);
+			JsonNode json = mapper.readTree(accountJson);
+			
+			json = json.get("role");
+			
+			String perfil = json.findValue("name").asText();
+			
+			System.out.println("Valor do perfil = " + perfil);
+			
+			AccountEntity entity = new AccountEntity(account.getUuid(), account.getFirstname(), account.getLastname(), account.getBlocked(), account.getEmail(), account.getEmailAcesso(), perfil,account.getPassword(),null);
+			
+			repository.save(entity);
 			response = new ResponseEntity<String>(new Gson().toJson("Success"), HttpStatus.CREATED);
 
 		} catch (Exception e) {
@@ -79,9 +114,11 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public ResponseEntity<String> updateAccount(@Valid AccountEntity account) {
+	public ResponseEntity<String> updateAccount(@Valid AccountDTO accountDto) {
 		ResponseEntity<String> response = null;
-		if (Boolean.TRUE.equals(validateAccount(account.getUuid()))) {
+		if (Boolean.TRUE.equals(validateAccount(accountDto.getUuid()))) {
+			AccountEntity account = new AccountEntity(accountDto.getUuid(), accountDto.getFirstname(), accountDto.getLastname(),
+					accountDto.getBlocked(),accountDto.getEmail(), accountDto.getEmailAcesso(), accountDto.getRole().getName(),accountDto.getPassword(), null);
 			repository.save(account);
 			response = new ResponseEntity<String>(new Gson().toJson("Success"), HttpStatus.OK);
 		} else {
@@ -149,24 +186,43 @@ public class AccountServiceImpl implements AccountService {
 		return response;
 	}
 
+//	@Override
+//	public ResponseEntity authenticationAccount(FormLogin login) {
+//		ResponseEntity<String> response = null;
+//		String user = login.getUser();
+//		String pass = login.getPassword();
+//		AccountEntity account = repository.authentication(user,pass);
+//		try {
+//
+//			if (Boolean.TRUE.equals(account.getBlocked())) {
+//				response = new ResponseEntity<String>(new Gson().toJson("User Blocked, Contact ADMIN"),
+//						HttpStatus.FORBIDDEN);
+//			} else {
+//				response = new ResponseEntity<String>(new Gson().toJson("Success"), HttpStatus.OK);
+//			}
+//		} catch (Exception e) {
+//			response = new ResponseEntity<String>(
+//					new Gson().toJson("[Error] - [royale-account-authentication] - ERROR" + e.getMessage()),
+//					HttpStatus.NOT_FOUND);
+//		}
+//		return response;
+//	}
+	
+	@SuppressWarnings("unchecked")
 	@Override
-	public ResponseEntity authenticationAccount(FormLogin login) {
-		ResponseEntity<String> response = null;
-		String user = login.getUser();
-		String pass = login.getPassword();
-		AccountEntity account = repository.authentication(user,pass);
+	public ResponseEntity<Boolean> validaUsuario(String email) {
+		ResponseEntity<Boolean> response = null;
+		Integer valida = repository.validaUsuario(email);
 		try {
-
-			if (Boolean.TRUE.equals(account.getBlocked())) {
-				response = new ResponseEntity<String>(new Gson().toJson("User Blocked, Contact ADMIN"),
-						HttpStatus.FORBIDDEN);
-			} else {
-				response = new ResponseEntity<String>(new Gson().toJson("Success"), HttpStatus.OK);
+			if (valida>0) {
+				response = new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
+			}else{
+				response = new ResponseEntity<Boolean>(Boolean.FALSE, HttpStatus.OK);
 			}
 		} catch (Exception e) {
-			response = new ResponseEntity<String>(
-					new Gson().toJson("[Error] - [royale-account-authentication] - ERROR" + e.getMessage()),
-					HttpStatus.NOT_FOUND);
+			response = new ResponseEntity(
+					new Gson().toJson("[Error] - [royale-account-validate-User] - ERROR" + e.getMessage()),
+					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return response;
 	}
@@ -178,5 +234,26 @@ public class AccountServiceImpl implements AccountService {
 			return Boolean.FALSE;
 		}
 	}
+
+	@Override
+	public String gerarToken(Authentication authentication) {
+		
+		
+		AccountEntity usuario = (AccountEntity) authentication.getPrincipal();
+		Date hoje = new Date();
+		
+		Date dtExpiration = new Date(hoje.getTime() +Long.parseLong(expiration));
+		
+		return Jwts.builder()
+				.setIssuer("API CRM ROYALE")
+				.setSubject(usuario.getUuid().toString())
+				.setIssuedAt(hoje)
+				.setExpiration(dtExpiration)
+				.signWith(SignatureAlgorithm.HS256, secret)
+				.compact();
+		
+	}
+
+	
 
 }
